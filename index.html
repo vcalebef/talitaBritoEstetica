@@ -551,28 +551,268 @@
 
   /* Blocos que aguardam dados da cliente: não aparecem até serem preenchidos */
   [data-pendente] { display: none !important; }
+
+  /* =====================================================================
+     V2 — conceito "o traço do cuidado"
+     Estrutura inspirada em página de produto (hero central + colagem,
+     categorias, benefícios, números, faixa gigante, mural de avaliações),
+     com a identidade da Talita: rosa/berry/plum, Young Serif + Figtree.
+     O traço desenhado à mão (o pincel da máscara) é o elemento-assinatura.
+     ===================================================================== */
+
+  :root { --radius-l: 1.75rem; --radius-m: 1.25rem; }
+
+  /* Botões: pílula escura com o ícone num círculo */
+  .btn {
+    background: var(--plum-deep); color: var(--white);
+    padding: .5rem .5rem .5rem 1.4rem; gap: .9rem;
+    font-size: 1rem;
+  }
+  .btn:not(:has(svg)) { padding: 1rem 1.5rem; }
+  .btn svg {
+    order: 2; width: 2.2rem; height: 2.2rem; padding: .45rem;
+    border-radius: 50%; background: var(--blush); color: var(--plum-deep);
+  }
+  .btn:hover { background: var(--berry); }
+  .btn:hover svg { transform: rotate(-12deg); }
+  .btn--ghost { background: var(--white); color: var(--plum); box-shadow: inset 0 0 0 1.5px var(--rose-deep); }
+  .btn--ghost svg { background: var(--petal); color: var(--berry); }
+  .btn--ghost:hover { background: var(--white); color: var(--berry); box-shadow: inset 0 0 0 1.5px var(--berry), 0 10px 24px -12px color-mix(in srgb, var(--berry) 50%, transparent); }
+  .nav .btn { padding: .4rem .4rem .4rem 1.1rem; }
+  .nav .btn svg { width: 1.9rem; height: 1.9rem; padding: .38rem; }
+
+  .hero2 .wrap { display: block; }
+  .tile { display: block; }
+  h2 { text-wrap: balance; }
+  .center { text-align: center; }
+  .center p { margin-inline: auto; }
+  .sec-head { max-width: 42rem; margin: 0 auto 3rem; text-align: center; }
+  .sec-head p { margin: 1.1rem auto 0; color: var(--ink-soft); }
+
+  /* ---------- Hero central ---------- */
+  .hero2 { padding: clamp(1.5rem, 5vw, 3.5rem) 0 0; text-align: center; }
+  .mark { width: clamp(9rem, 22vw, 13.5rem); height: auto; margin: 0 auto 1.25rem; overflow: visible; }
+  .mark path { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .hero2 h1 { max-width: 17ch; margin: 0 auto; font-size: clamp(2.3rem, 6.2vw, 4rem); }
+  .hero2 .lede { max-width: 36rem; margin: 1.4rem auto 2rem; font-size: 1.2rem; }
+  .hero2 .hero-actions { justify-content: center; gap: .85rem; }
+  .hero2 .micro { margin-inline: auto; }
+
+  /* ---------- Colagem ---------- */
+  .collage {
+    display: grid; gap: 1rem; margin-top: clamp(3rem, 7vw, 4.5rem);
+    grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start;
+  }
+  @media (min-width: 900px) { .collage { grid-template-columns: 1fr .9fr 1.15fr 1fr; gap: 1.25rem; align-items: center; } }
+  .col { display: grid; gap: 1rem; }
+  .tile { border-radius: var(--radius-m); overflow: hidden; position: relative; text-align: left; }
+  .tile img { width: 100%; height: 100%; object-fit: cover; }
+
+  .tile--rating { background: var(--berry); color: var(--white); padding: 1.3rem 1.4rem 1.4rem; }
+  .tile--rating .big { font-family: var(--serif); font-size: 3rem; line-height: 1; }
+  .stars { display: flex; gap: .15rem; margin: .6rem 0 .5rem; color: var(--blush); }
+  .stars svg { width: 1.05rem; height: 1.05rem; }
+  .tile--rating p { margin: 0; color: var(--on-berry); font-size: .95rem; line-height: 1.4; }
+
+  .tile--chat { background: var(--white); padding: 1.1rem; border: 1.5px solid var(--petal); }
+  .chat-who { display: flex; align-items: center; gap: .6rem; font-weight: 600; font-size: .92rem; color: var(--plum); margin-bottom: .9rem; }
+  .chat-who img { width: 2.1rem; height: 2.1rem; border-radius: 50%; object-fit: cover; object-position: 38% 30%; }
+  .chat-who small { display: block; font-weight: 400; color: var(--ink-soft); font-size: .9rem; }
+  .bubble { background: var(--petal); color: var(--plum); border-radius: 1rem 1rem .3rem 1rem; padding: .75rem .9rem; font-size: .95rem; line-height: 1.4; margin-left: 1.25rem; }
+  .chat-note { margin: .6rem 0 0; font-size: .9rem; color: var(--ink-soft); text-align: right; }
+
+  .tile--arch { aspect-ratio: 3 / 4.6; border-radius: 12rem 12rem var(--radius-m) var(--radius-m); background: var(--petal); }
+  .chip-card {
+    position: absolute; left: .75rem; right: .75rem; bottom: .75rem;
+    background: var(--white); border-radius: 1rem; padding: .75rem .9rem;
+    box-shadow: 0 14px 30px -16px color-mix(in srgb, var(--plum-deep) 55%, transparent);
+  }
+  .chip-card strong { display: block; color: var(--plum); font-size: .98rem; }
+  .chip-card span { display: flex; align-items: center; gap: .35rem; color: var(--ink-soft); font-size: .9rem; }
+  .chip-card .ico { width: .95rem; height: .95rem; color: var(--rose-deep); }
+
+  .tile--orb { aspect-ratio: 1; border-radius: 50%; background: var(--petal); overflow: visible; }
+  .tile--orb .orb-img { position: absolute; inset: 9%; border-radius: 50%; overflow: hidden; }
+  .tile--orb .orb-img img { object-position: 38% 50%; }
+  .tile--orb::before, .tile--orb::after { content: ""; position: absolute; border-radius: 50%; }
+  .tile--orb::before { width: 22%; height: 22%; right: -2%; top: 4%; background: var(--blush); }
+  .tile--orb::after { width: 13%; height: 13%; left: 0; bottom: 8%; background: var(--berry); }
+
+  .tile--hours { background: var(--plum); color: var(--on-plum); padding: 1.3rem 1.4rem; }
+  .tile--hours h3 { font: 600 1rem/1.3 var(--sans); color: var(--white); display: flex; align-items: center; gap: .5rem; margin-bottom: .8rem; }
+  .tile--hours h3 .ico { color: var(--blush); }
+  .tile--hours dl { margin: 0; display: grid; gap: .55rem; font-size: .95rem; }
+  .tile--hours dt { color: var(--on-plum-soft); font-size: .9rem; }
+  .tile--hours dd { margin: 0; color: var(--white); font-weight: 500; }
+  .tile--mirror { aspect-ratio: 4 / 3.2; }
+  .tile--mirror img { object-position: 50% 35%; }
+  @media (max-width: 899px) {
+    .collage { gap: .75rem; }
+    .collage .col { display: contents; }
+    .tile--mirror { order: 6; grid-column: 1 / -1; aspect-ratio: 16 / 11; }
+    .tile--arch { order: 1; grid-row: span 2; aspect-ratio: auto; height: 100%; min-height: 19rem; }
+    .tile--rating { order: 2; padding: 1rem 1.1rem; }
+    .tile--rating .big { font-size: 2.4rem; }
+    .tile--orb { order: 3; width: 82%; justify-self: center; }
+    .tile--chat { order: 4; grid-column: 1 / -1; }
+    .bubble { margin-left: 2.5rem; }
+    .tile--hours { order: 5; grid-column: 1 / -1; }
+    .tile--hours dl { grid-template-columns: 1fr 1fr; }
+    .chip-card { left: .5rem; right: .5rem; bottom: .5rem; padding: .6rem .7rem; }
+  }
+
+  /* ---------- Faixa de tratamentos (no lugar dos logos) ---------- */
+  .strip { padding: clamp(3.5rem, 8vw, 5.5rem) 0 0; text-align: center; }
+  .strip p { margin: 0 auto 1.5rem; color: var(--ink-soft); font-size: 1rem; }
+  .strip ul { list-style: none; margin: 0 auto; padding: 0; max-width: 58rem; display: flex; flex-wrap: wrap; justify-content: center; gap: .6rem 1.4rem; }
+  .strip li { font-family: var(--serif); font-size: clamp(1.15rem, 2.2vw, 1.4rem); color: var(--rose-deep); display: flex; align-items: center; gap: 1.4rem; }
+  .strip li:not(:last-child)::after { content: ""; width: .4rem; height: .4rem; background: var(--blush); border-radius: 50%; }
+
+  /* ---------- Categorias ---------- */
+  .cats .cat-grid { display: grid; gap: 1.1rem; }
+  @media (min-width: 860px) { .cats .cat-grid { grid-template-columns: repeat(3, 1fr); gap: 1.25rem; } }
+  .cat {
+    position: relative; overflow: hidden; isolation: isolate;
+    min-height: 26rem; padding: 1.6rem 1.6rem 1.5rem; border-radius: var(--radius-l);
+    display: flex; flex-direction: column; align-items: flex-start;
+    color: var(--white);
+  }
+  .cat small { font-weight: 600; font-size: .9rem; color: var(--on-berry); }
+  .cat h3 { color: inherit; font-size: clamp(1.6rem, 2.6vw, 1.95rem); margin: .4rem 0 .6rem; max-width: 15ch; text-wrap: balance; }
+  .cat p { font-size: 1rem; margin: 0; max-width: 24ch; color: var(--on-berry); }
+  .cat .btn { margin-top: auto; background: var(--white); color: var(--plum); font-size: .95rem; padding: .4rem .4rem .4rem 1.1rem; }
+  .cat .btn svg { width: 1.9rem; height: 1.9rem; padding: .45rem; background: var(--plum-deep); color: var(--white); }
+  .cat .btn:hover { background: var(--rose-mist); color: var(--berry); }
+  .cat-art { position: absolute; z-index: -1; right: -6%; bottom: -1.5rem; width: 72%; height: auto; overflow: visible; }
+  .cat-art path { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  @media (max-width: 859px) { .cat { min-height: 20rem; } }
+  .cat--facial { background: var(--berry); }
+  .cat--corpo { background: var(--plum); }
+  .cat--corpo small, .cat--corpo p { color: var(--on-plum); }
+  .cat--mae { background: var(--petal); color: var(--plum); }
+  .cat--mae small { color: var(--berry); }
+  .cat--mae p { color: var(--ink); }
+  .cat--mae .btn { background: var(--plum-deep); color: var(--white); }
+  .cat--mae .btn svg { background: var(--blush); color: var(--plum-deep); }
+  .cat--mae .btn:hover { background: var(--berry); color: var(--white); }
+
+
+  /* ---------- Benefícios ---------- */
+  .why { background: var(--white); }
+  .why-grid { list-style: none; margin: 0; padding: 0; display: grid; gap: 2.25rem 2.5rem; }
+  @media (min-width: 640px) { .why-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 960px) { .why-grid { grid-template-columns: repeat(3, 1fr); gap: 2.75rem 3.5rem; } }
+  .why-grid svg { width: 1.6rem; height: 1.6rem; color: var(--berry); margin-bottom: .9rem; }
+  .why-grid svg * { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .why-grid h3 { font: 600 1.1rem/1.3 var(--sans); color: var(--plum); margin-bottom: .45rem; }
+  .why-grid p { margin: 0; color: var(--ink-soft); font-size: 1rem; }
+
+  /* Bloco de dúvidas */
+  .ask { margin: clamp(3.5rem, 7vw, 5rem) auto 0; text-align: center; }
+  .ask p { margin: 0 auto .9rem; font-weight: 600; color: var(--plum); font-size: 1.05rem; }
+  .ask-who { display: inline-flex; align-items: center; gap: .6rem; margin-bottom: 1.25rem; font-size: .92rem; color: var(--ink-soft); }
+  .ask-who img { width: 2.4rem; height: 2.4rem; border-radius: 50%; object-fit: cover; object-position: 38% 30%; box-shadow: 0 0 0 3px var(--white), 0 0 0 4.5px var(--petal); }
+  .ask-who .dot { width: .5rem; height: .5rem; border-radius: 50%; background: var(--rose-deep); }
+
+  /* ---------- Números ---------- */
+  .stats h2 { max-width: 20ch; margin: 0 auto; text-align: center; }
+  .stat-list { list-style: none; padding: 0; margin: 3rem auto 0; max-width: 60rem; display: grid; grid-template-columns: repeat(2, 1fr); gap: 2.25rem 1.5rem; }
+  @media (min-width: 860px) { .stat-list { grid-template-columns: repeat(4, 1fr); } }
+  .stat-list svg { width: 1.3rem; height: 1.3rem; color: var(--rose-deep); }
+  .stat-list svg * { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .stat-num { display: block; font-family: var(--serif); font-size: clamp(2.5rem, 5vw, 3.25rem); line-height: 1.1; color: var(--plum); margin: .5rem 0 .3rem; }
+  .stat-list span:last-child { font-size: .95rem; color: var(--ink-soft); display: block; max-width: 14rem; }
+  .stats .center-link { text-align: center; margin: 2.75rem auto 0; }
+
+  /* ---------- Faixa gigante ---------- */
+  .band { background: var(--berry); color: var(--white); padding: clamp(4rem, 9vw, 7rem) 0 clamp(3rem, 6vw, 4.5rem); overflow: hidden; }
+  .band-track { display: flex; width: max-content; }
+  .band-run { display: flex; align-items: center; gap: clamp(1.5rem, 4vw, 3rem); padding-right: clamp(1.5rem, 4vw, 3rem); white-space: nowrap; }
+  .band-run span { font-family: var(--serif); font-size: clamp(3.5rem, 11vw, 8.5rem); line-height: 1.1; letter-spacing: -.01em; }
+  .band-run svg { width: clamp(2.5rem, 6vw, 4.5rem); height: auto; flex: none; }
+  .band-run svg { color: var(--blush); overflow: visible; }
+  .band-note { margin: 2rem auto 0; color: var(--on-berry); font-size: 1rem; text-align: right; max-width: 72rem; padding: 0 var(--gutter); }
+  @media (prefers-reduced-motion: no-preference) {
+    .band-track { animation: band 38s linear infinite; }
+    .band:hover .band-track { animation-play-state: paused; }
+    @keyframes band { to { transform: translateX(-50%); } }
+  }
+
+  /* ---------- Mural de avaliações ---------- */
+  .wall-wrap { position: relative; }
+  .wall { columns: 1; column-gap: 1.25rem; }
+  @media (min-width: 700px) { .wall { columns: 2; } }
+  @media (min-width: 1000px) { .wall { columns: 3; } }
+  .review {
+    break-inside: avoid; margin: 0 0 1.25rem; padding: 1.5rem 1.5rem 1.4rem;
+    background: var(--white); border-radius: var(--radius-m); border: 1.5px solid var(--petal);
+  }
+  .review figcaption { display: flex; align-items: center; gap: .7rem; margin-bottom: .9rem; }
+  .review .ini { width: 2.4rem; height: 2.4rem; border-radius: 50%; display: grid; place-items: center; background: var(--petal); color: var(--berry); font-weight: 600; }
+  .review figcaption strong { display: block; color: var(--plum); line-height: 1.2; }
+  .review figcaption small { color: var(--ink-soft); font-size: .9rem; }
+  .review .stars { margin: 0 0 .7rem; color: var(--rose-deep); }
+  .review blockquote { margin: 0; font-size: 1rem; }
+  .review--big blockquote { font-size: 1.15rem; font-weight: 500; line-height: 1.55; color: var(--plum); }
+  .badges { break-inside: avoid; display: grid; justify-items: start; gap: 1rem; padding: 1.5rem; border-radius: var(--radius-m); background: var(--petal); }
+  .badge {
+    display: flex; align-items: center; gap: 1rem; padding: .9rem 1.2rem .9rem 1.3rem;
+    background: var(--white); border-radius: 1rem;
+    box-shadow: 0 18px 40px -22px color-mix(in srgb, var(--plum-deep) 60%, transparent), 0 0 0 1.5px var(--petal);
+  }
+  .badge .big { font-family: var(--serif); font-size: 2.2rem; line-height: 1; color: var(--plum); }
+  .badge .stars { margin: 0 0 .2rem; color: var(--rose-deep); }
+  .badge small { display: block; font-size: .9rem; color: var(--ink-soft); }
+  .badge .g { font-weight: 600; color: var(--plum); margin-left: .5rem; padding-left: 1rem; border-left: 1.5px solid var(--petal); }
+
+  /* ajustes nas seções herdadas */
+  .menu-head { grid-template-columns: 1fr !important; text-align: center; max-width: 42rem; margin-inline: auto; }
+  .menu-head p { margin: 0 auto !important; color: var(--ink-soft); }
+  @media (min-width: 860px) { .menu-filters { justify-content: center; } }
+  .moms { border-radius: var(--radius-l); margin: 0 clamp(.5rem, 2vw, 1.5rem); }
+  .final { border-radius: var(--radius-l) var(--radius-l) 0 0; }
+  .final .btn { background: var(--white); color: var(--plum); }
+  .final .btn svg { background: var(--berry); color: var(--white); }
+  .final .btn:hover { background: var(--rose-mist); color: var(--berry); }
+  .menu-book { background: var(--plum-deep); }
+  .menu-book:hover { background: var(--berry); }
+
+  /* ---------- Momento de abertura (único movimento automático) ---------- */
+  @media (prefers-reduced-motion: no-preference) {
+    .js .mark path { stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw .7s cubic-bezier(.6,0,.3,1) forwards; animation-delay: calc(.1s + var(--d) * 90ms); }
+    @keyframes draw { to { stroke-dashoffset: 0; } }
+    .js .collage .col { animation: lift 1s cubic-bezier(.2,.7,.2,1) backwards; animation-delay: calc(.85s + var(--c) * 110ms); }
+    @keyframes lift { from { opacity: 0; transform: translateY(40px) rotate(var(--r, 0deg)); } }
+    .js .hero2 .lede { animation-delay: .5s; }
+    .js .hero2 .hero-actions { animation-delay: .62s; }
+    .js .hero2 .micro { animation-delay: .72s; }
+    .cat-art path { transition: transform .8s cubic-bezier(.2,.7,.2,1); transform-box: fill-box; transform-origin: bottom; }
+    .cat:hover .cat-art path { transform: translateY(-6%) rotate(var(--t, 4deg)); }
+  }
 </style>
 </head>
 <body>
 
-<!-- Ícone do WhatsApp reutilizado nos botões -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.8-1.2.2-.6.2-1.1.1-1.2l-.5-.3Z"/></symbol>
   <symbol id="ig" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5.2" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4.1" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.3" cy="6.7" r="1.15" fill="currentColor"/></symbol>
   <symbol id="pin" viewBox="0 0 24 24"><path d="M12 21.2s-6.8-6-6.8-11.4a6.8 6.8 0 0 1 13.6 0c0 5.4-6.8 11.4-6.8 11.4Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="9.8" r="2.4" fill="none" stroke="currentColor" stroke-width="1.8"/></symbol>
   <symbol id="clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.6" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 7.4V12l3.2 2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="star" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></symbol>
+  <symbol id="arrow" viewBox="0 0 24 24"><path d="M7 12h10M13 7l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="stroke" viewBox="0 0 80 50"><path fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" d="M6 40C14 14 24 8 30 30M36 38 46 8l8 30M60 34c4-14 10-20 16-24"/></symbol>
 </svg>
 
 <header class="top">
   <div class="wrap">
     <a class="brand" href="#">Talita Brito Estética</a>
     <nav class="nav" aria-label="Principal">
-      <a href="#servicos">Serviços</a>
-      <a href="#gestantes">Gestantes</a>
-      <a href="#sobre">Sobre</a>
+      <a href="#servicos">Tratamentos</a>
+      <a href="#porque">Por que a Talita</a>
       <a href="#avaliacoes">Avaliações</a>
+      <a href="#sobre">Sobre</a>
       <a href="#local">Localização</a>
-      <a class="btn" href="https://wa.me/5519982011050?text=Ol%C3%A1%20Talita!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20uma%20limpeza%20de%20pele" target="_blank" rel="noopener">Agendar</a>
+      <a class="btn" href="https://wa.me/5519982011050?text=Ol%C3%A1%20Talita!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20uma%20limpeza%20de%20pele" target="_blank" rel="noopener">Agendar<svg aria-hidden="true"><use href="#wa"/></svg></a>
     </nav>
   </div>
 </header>
@@ -580,49 +820,111 @@
 <main>
 
   <!-- HERO -->
-  <section class="hero">
+  <section class="hero hero2">
     <div class="wrap">
-      <div>
-        <h1>Limpeza de pele em Campinas, feita com calma e cuidado</h1>
-        <p class="lede">Um atendimento só seu, para cuidar dos cravos, da oleosidade e do viço da pele. Com a Talita Brito, esteticista especialista em limpeza de pele.</p>
-        <div class="hero-actions">
-          <a class="btn" data-cta="hero" href="https://wa.me/5519982011050?text=Ol%C3%A1%20Talita!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20uma%20limpeza%20de%20pele" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#wa"/></svg>Agendar pelo WhatsApp</a>
-          <a class="link" href="#servicos">Ver os serviços</a>
-        </div>
-        <p class="micro">Resposta direto no WhatsApp. Sem compromisso para tirar dúvidas.</p>
-        <ul class="trust">
-          <li>Especialista em limpeza de pele</li>
-          <li>Atendimento individual em Campinas</li>
-          <li><a href="#avaliacoes" class="trust-link">Nota 5,0 no Google, com 127 avaliações</a></li>
-        </ul>
+      <svg class="mark" viewBox="0 0 220 110" aria-hidden="true">
+        <path pathLength="1" style="--d:0" stroke="#E58AA6" stroke-width="7" d="M14 44l14 12"/>
+        <path pathLength="1" style="--d:1" stroke="#D9768F" stroke-width="8" d="M30 92C36 60 50 46 60 74"/>
+        <path pathLength="1" style="--d:2" stroke="#9B2A55" stroke-width="9" d="M74 84 88 26l12 50 14-54"/>
+        <path pathLength="1" style="--d:3" stroke="#B85774" stroke-width="7" d="M108 10l4 12"/>
+        <path pathLength="1" style="--d:4" stroke="#E58AA6" stroke-width="8" d="M130 80c6-30 22-44 34-30-8 10-4 26 12 22"/>
+        <path pathLength="1" style="--d:5" stroke="#9B2A55" stroke-width="7" d="M182 56c8-20 16-32 28-42"/>
+        <path pathLength="1" style="--d:6" stroke="#D9768F" stroke-width="6" d="M196 74l14-4"/>
+      </svg>
+      <h1>Limpeza de pele em Campinas, feita com calma e cuidado</h1>
+      <p class="lede">Um atendimento só seu, para cuidar dos cravos, da oleosidade e do viço da pele. Com a Talita Brito, esteticista desde 2013.</p>
+      <div class="hero-actions">
+        <a class="btn btn--ghost" href="#servicos">Ver os tratamentos</a>
+        <a class="btn" data-cta="hero" href="https://wa.me/5519982011050?text=Ol%C3%A1%20Talita!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20uma%20limpeza%20de%20pele" target="_blank" rel="noopener">Agendar pelo WhatsApp<svg aria-hidden="true"><use href="#wa"/></svg></a>
       </div>
-      <div class="hero-visual">
-        <div class="mirror">
-          <div class="mirror-glass">
-            <img src="fotos/talita-hero.jpg" alt="Talita Brito, esteticista especialista em limpeza de pele em Campinas" style="object-position: 38% 50%">
+      <p class="micro">Resposta direto no WhatsApp. Sem compromisso para tirar dúvidas.</p>
+
+      <div class="collage">
+        <div class="col" style="--c:0;--r:-3deg">
+          <a class="tile tile--rating" href="#avaliacoes" style="text-decoration:none">
+            <span class="big">5,0</span>
+            <span class="stars" aria-hidden="true"><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg></span>
+            <p>Nota no Google, com 127 avaliações de clientes</p>
+          </a>
+          <div class="tile tile--chat">
+            <div class="chat-who"><img src="fotos/talita-hero.jpg" alt="" loading="lazy"><span>Talita Brito<small>WhatsApp</small></span></div>
+            <p class="bubble">Olá Talita! Vim pelo site e gostaria de agendar uma limpeza de pele</p>
+            <p class="chat-note">A mensagem já vai pronta</p>
           </div>
-          <span class="mirror-handle" aria-hidden="true"></span>
+        </div>
+        <div class="col" style="--c:1;--r:2deg">
+          <div class="tile tile--arch">
+            <img src="fotos/talita-procedimento.jpg" alt="Talita Brito aplicando um tratamento facial em si mesma, de touca e luvas" style="object-position: 50% 30%">
+            <div class="chip-card"><strong>Limpeza de pele</strong><span><svg class="ico" aria-hidden="true"><use href="#clock"/></svg>Cerca de 1h30</span></div>
+          </div>
+        </div>
+        <div class="col" style="--c:2;--r:-2deg">
+          <div class="tile tile--orb"><div class="orb-img"><img src="fotos/talita-hero.jpg" alt="Talita Brito, esteticista em Campinas, sorrindo"></div></div>
+        </div>
+        <div class="col" style="--c:3;--r:3deg">
+          <div class="tile tile--hours">
+            <h3><svg class="ico" aria-hidden="true"><use href="#clock"/></svg>Horário de atendimento</h3>
+            <dl>
+              <div><dt>Segunda a sexta</dt><dd>8h às 18h</dd></div>
+              <div><dt>Sábado</dt><dd>8h às 16h</dd></div>
+            </dl>
+          </div>
+          <div class="tile tile--mirror"><img src="fotos/talita-jaleco.jpg" alt="Talita Brito de jaleco e luva rosa, sorrindo e segurando a ponteira de um aparelho facial" loading="lazy" style="object-position: 55% 28%"></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- DOR E DESEJO -->
-  <section class="pain">
+  <!-- FAIXA DE TRATAMENTOS -->
+  <section class="strip" aria-label="Tratamentos oferecidos">
     <div class="wrap">
-      <div>
-        <h2>Você já olhou no espelho e pensou "preciso cuidar mais da minha pele"?</h2>
-        <p style="margin-top:1.5rem">Cravos que voltam. Brilho no rosto antes do meio-dia. Uma pele que parece cansada, mesmo quando você dormiu bem.</p>
-        <p>Isso é comum. E muitas vezes não é falta de cuidado. É falta de uma limpeza feita do jeito certo, para o seu tipo de pele.</p>
+      <p>Cuidados faciais, corporais e para gestantes, no Jardim Lisa, em Campinas.</p>
+      <ul>
+        <li>Limpeza de pele</li><li>Peeling de diamante</li><li>Microagulhamento</li><li>Drenagem gestacional</li><li>Massagem relaxante</li><li>Taping</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- CATEGORIAS -->
+  <section class="cats">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Um cuidado para cada momento seu</h2>
       </div>
-      <div>
-        <ul class="pain-list">
-          <li><strong>Cravos e poros entupidos</strong><span>Uma limpeza profissional ajuda a deixá-los mais limpos.</span></li>
-          <li><strong>Oleosidade e brilho</strong><span>O cuidado certo ajuda a equilibrar a aparência da pele.</span></li>
-          <li><strong>Pele opaca e sem viço</strong><span>A pele fica com aspecto mais limpo e uniforme.</span></li>
-        </ul>
-        <p class="bridge">É para isso que a Talita faz o atendimento: olhar a sua pele com calma e cuidar dela.</p>
-        <a class="btn" data-cta="dor" href="https://wa.me/5519982011050?text=Ol%C3%A1%20Talita!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20uma%20limpeza%20de%20pele" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#wa"/></svg>Quero agendar minha limpeza de pele</a>
+      <div class="cat-grid">
+        <article class="cat cat--facial">
+          <small>Facial</small>
+          <h3>Pele limpa, macia e com viço</h3>
+          <p>Limpeza de pele, peelings, microagulhamento e rejuvenescimento.</p>
+          <svg class="cat-art" viewBox="0 0 300 300" aria-hidden="true">
+            <path stroke="#E58AA6" stroke-width="18" style="--t:-5deg" d="M60 320C70 190 120 150 150 250"/>
+            <path stroke="#F4D3DA" stroke-width="16" style="--t:4deg" d="M150 330 190 120l30 170 34-210"/>
+            <path stroke="#D9768F" stroke-width="14" style="--t:6deg" d="M250 330c6-110 20-190 46-250"/>
+          </svg>
+          <a class="btn" href="#servicos" data-goto="facial">Ver tratamentos faciais<svg aria-hidden="true"><use href="#arrow"/></svg></a>
+        </article>
+        <article class="cat cat--corpo">
+          <small>Corporal</small>
+          <h3>Leveza e uma pausa na rotina</h3>
+          <p>Drenagem linfática, massagem relaxante, Max Detox Turbo e Pump Up.</p>
+          <svg class="cat-art" viewBox="0 0 300 300" aria-hidden="true">
+            <path stroke="#9B2A55" stroke-width="18" style="--t:5deg" d="M30 330c20-110 70-140 110-80s90 50 110-80"/>
+            <path stroke="#E58AA6" stroke-width="14" style="--t:-4deg" d="M200 330c6-110 40-200 96-250"/>
+            <path stroke="#D9768F" stroke-width="12" style="--t:3deg" d="M120 150l26-70"/>
+          </svg>
+          <a class="btn" href="#servicos" data-goto="corporal">Ver tratamentos corporais<svg aria-hidden="true"><use href="#arrow"/></svg></a>
+        </article>
+        <article class="cat cat--mae">
+          <small>Gestantes</small>
+          <h3>Conforto durante a gestação</h3>
+          <p>Drenagem gestacional e taping, com técnica suave e adaptada a cada trimestre.</p>
+          <svg class="cat-art" viewBox="0 0 300 300" aria-hidden="true">
+            <path stroke="#E58AA6" stroke-width="18" style="--t:-4deg" d="M70 330c-10-110 40-180 100-170s50 90 0 110"/>
+            <path stroke="#B85774" stroke-width="14" style="--t:5deg" d="M190 330l40-220 30 150"/>
+            <path stroke="#9B2A55" stroke-width="12" style="--t:-6deg" d="M270 330c4-90 12-160 30-210"/>
+          </svg>
+          <a class="btn" href="#servicos" data-goto="gestante">Ver cuidados para gestantes<svg aria-hidden="true"><use href="#arrow"/></svg></a>
+        </article>
       </div>
     </div>
   </section>
@@ -872,6 +1174,96 @@
   </dialog>
 
 
+  <!-- POR QUE A TALITA -->
+  <section class="why" id="porque">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Por que as clientes voltam</h2>
+      </div>
+      <ul class="why-grid">
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.6"/><path d="M5 20c1.2-3.8 4-5.6 7-5.6s5.8 1.8 7 5.6"/></svg>
+          <h3>Atendimento individual</h3><p>Com hora marcada, só você e a Talita, do começo ao fim e sem pressa.</p></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="10.5" rx="6.5" ry="8"/><path d="M12 18.5V22M8.5 22h7"/></svg>
+          <h3>Avaliação antes de tudo</h3><p>Ela olha a sua pele e conversa com você antes de indicar qualquer tratamento.</p></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5h16v10H9l-5 4z"/><path d="M8 9.5h8M8 12.5h5"/></svg>
+          <h3>Explica cada etapa</h3><p>Você sabe o que está sendo feito e por quê. Pode perguntar à vontade.</p></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9h11v5a5 5 0 0 1-5 5h-1a5 5 0 0 1-5-5z"/><path d="M16 10.5h1.5a2.5 2.5 0 0 1 0 5H16M8 3.5c0 1.5 1 1.5 1 3M12 3.5c0 1.5 1 1.5 1 3"/></svg>
+          <h3>Espaço aconchegante</h3><p>Um ambiente climatizado e acolhedor, no Jardim Lisa, em Campinas.</p></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2.5"/><path d="M4 9.5h16M8.5 3v4M15.5 3v4"/></svg>
+          <h3>Na estética desde 2013</h3><p>Mais de dez anos cuidando da pele de mulheres de todas as idades.</p></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11.5 12 5l8 6.5V20H4z"/><path d="M10 20v-5h4v5"/></svg>
+          <h3>O cuidado continua em casa</h3><p>Você sai com orientações do que usar e do que evitar nos dias seguintes.</p></li>
+      </ul>
+
+      <div class="ask">
+        <p>Ficou com alguma dúvida? A Talita responde pelo WhatsApp.</p>
+        <div class="ask-who"><img src="fotos/talita-hero.jpg" alt="" loading="lazy"><span class="dot" aria-hidden="true"></span>Segunda a sábado, em horário de atendimento</div>
+        <div><a class="btn" data-cta="duvidas" href="https://wa.me/5519982011050?text=Ol%C3%A1%20Talita!%20Vim%20pelo%20site%20e%20tenho%20uma%20d%C3%BAvida" target="_blank" rel="noopener">Tirar uma dúvida<svg aria-hidden="true"><use href="#wa"/></svg></a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NÚMEROS -->
+  <section class="stats">
+    <div class="wrap">
+      <h2>Cuidando da pele de Campinas desde 2013</h2>
+      <ul class="stat-list">
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2.5"/><path d="M4 9.5h16M8.5 3v4M15.5 3v4"/></svg><span class="stat-num">2013</span><span>Ano em que a Talita começou na estética</span></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.5 5.2 5.7.7-4.2 3.9 1.1 5.6L12 16.2l-5.1 2.7 1.1-5.6-4.2-3.9 5.7-.7z"/></svg><span class="stat-num">5,0</span><span>Nota média no Google</span></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5h16v10H9l-5 4z"/></svg><span class="stat-num" data-count="127">127</span><span>Avaliações de clientes no Google</span></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="10.5" rx="6.5" ry="8"/><path d="M12 18.5V22M8.5 22h7"/></svg><span class="stat-num" data-count="13">13</span><span>Tratamentos faciais, corporais e para gestantes</span></li>
+      </ul>
+      <p class="center-link"><a class="btn btn--ghost" href="#avaliacoes">Ler as avaliações</a></p>
+    </div>
+  </section>
+
+  <!-- FAIXA GIGANTE -->
+  <section class="band" aria-label="Sua pele, no seu tempo">
+    <div class="band-track" aria-hidden="true">
+      <div class="band-run"><span>Sua pele, no seu tempo</span><svg viewBox="0 0 80 50"><use href="#stroke"/></svg><span>Cuidado sem pressa</span><svg viewBox="0 0 80 50"><use href="#stroke"/></svg></div>
+      <div class="band-run"><span>Sua pele, no seu tempo</span><svg viewBox="0 0 80 50"><use href="#stroke"/></svg><span>Cuidado sem pressa</span><svg viewBox="0 0 80 50"><use href="#stroke"/></svg></div>
+    </div>
+    <p class="band-note">Atendimento individual, com hora marcada, no Jardim Lisa, em Campinas.</p>
+  </section>
+
+  <!-- AVALIAÇÕES (textos reais do Google, nov/2026) -->
+  <section class="reviews" id="avaliacoes">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Quem já passou por aqui</h2>
+        <p>Algumas das avaliações deixadas no Google por clientes da Talita.</p>
+      </div>
+      <div class="wall-wrap">
+        <div class="wall">
+          <figure class="review review--big">
+            <figcaption><span class="ini" aria-hidden="true">Í</span><span><strong>Ídma R.</strong><small>Cliente há mais de 4 anos</small></span></figcaption>
+            <span class="stars" role="img" aria-label="5 estrelas"><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg></span>
+            <blockquote>Faço limpeza de pele, peeling de diamante e drenagem com a Talita há mais de 4 anos. Ela é uma profissional que preza pela qualidade do atendimento e o melhor para a cliente. Sempre utiliza produtos de qualidade e nunca vai indicar o que você não precisa.</blockquote>
+          </figure>
+          <figure class="review">
+            <figcaption><span class="ini" aria-hidden="true">D</span><span><strong>Debora G.</strong><small>Avaliação no Google</small></span></figcaption>
+            <span class="stars" role="img" aria-label="5 estrelas"><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg></span>
+            <blockquote>Fiz uma limpeza de pele maravilhosa. A Talita faz você se sentir super confortável. A pele ficou maravilhosa.</blockquote>
+          </figure>
+          <figure class="review">
+            <figcaption><span class="ini" aria-hidden="true">G</span><span><strong>Gilvana S.</strong><small>Avaliação no Google</small></span></figcaption>
+            <span class="stars" role="img" aria-label="5 estrelas"><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg></span>
+            <blockquote>O espaço é maravilhoso, super aconchegante, limpo e climatizado, além do cappuccino delicioso que faz toda a diferença no acolhimento.</blockquote>
+          </figure>
+          <figure class="review">
+            <figcaption><span class="ini" aria-hidden="true">D</span><span><strong>Daniela P.</strong><small>Avaliação no Google</small></span></figcaption>
+            <span class="stars" role="img" aria-label="5 estrelas"><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg></span>
+            <blockquote>Atenciosa, explica tudo que você pergunta. Com certeza vou voltar várias vezes.</blockquote>
+          </figure>
+          <div class="badges">
+            <div class="badge"><span class="big">5,0</span><span><span class="stars" aria-hidden="true"><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg></span><small><span data-count="127">127</span> avaliações</small></span><span class="g">Google</span></div>
+            <a class="btn btn--ghost" href="https://www.google.com/maps/place/Est%C3%A9tica+Talita+Brito/@-22.9550154,-47.184121,17z/data=!4m6!3m5!1s0x94c8b7b7362a7f35:0xea135791ed839414!8m2!3d-22.9550154!4d-47.184121!16s%2Fg%2F11h5md3zh5" target="_blank" rel="noopener">Ler todas no Google</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- GESTANTES -->
   <section class="moms" id="gestantes">
     <div class="wrap">
@@ -912,7 +1304,7 @@
       <div class="hero-visual">
         <div class="mirror">
           <div class="mirror-glass">
-            <img src="fotos/talita-sobre.jpg" alt="Talita Brito no espaço de atendimento, no Jardim Lisa, em Campinas" loading="lazy" style="object-position: 50% 40%">
+            <img src="fotos/talita-sobre-rosa.jpg" alt="Talita Brito sorrindo, de camisa rosa, em frente a uma parede rosa" loading="lazy" style="object-position: 46% 30%">
           </div>
           <span class="mirror-handle" aria-hidden="true"></span>
         </div>
@@ -934,38 +1326,6 @@
     </div>
   </section>
 
-  <!-- AVALIAÇÕES (textos reais do Google, nov/2026) -->
-  <section class="reviews" id="avaliacoes">
-    <div class="wrap">
-      <div class="reviews-head">
-        <h2>Quem já passou por aqui</h2>
-        <p class="score"><span class="score-num">5,0</span> <span>de 5 no Google, com <span data-count="127">127</span> avaliações</span></p>
-      </div>
-      <div class="quotes">
-        <figure class="quote quote--big">
-          <blockquote>Faço limpeza de pele, peeling de diamante e drenagem com a Talita há mais de 4 anos. Ela é uma profissional que preza pela qualidade do atendimento e o melhor para a cliente. Sempre utiliza produtos de qualidade e nunca vai indicar o que você não precisa.</blockquote>
-          <figcaption>Ídma R.</figcaption>
-        </figure>
-        <figure class="quote">
-          <blockquote>Fiz uma limpeza de pele maravilhosa. A Talita faz você se sentir super confortável. A pele ficou maravilhosa.</blockquote>
-          <figcaption>Debora G.</figcaption>
-        </figure>
-        <figure class="quote">
-          <blockquote>O espaço é maravilhoso, super aconchegante, limpo e climatizado, além do cappuccino delicioso que faz toda a diferença no acolhimento.</blockquote>
-          <figcaption>Gilvana S.</figcaption>
-        </figure>
-        <figure class="quote">
-          <blockquote>Atenciosa, explica tudo que você pergunta. Com certeza vou voltar várias vezes.</blockquote>
-          <figcaption>Daniela P.</figcaption>
-        </figure>
-      </div>
-      <div class="about-actions">
-        <a class="btn" data-cta="avaliacoes" href="https://wa.me/5519982011050?text=Ol%C3%A1%20Talita!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20uma%20limpeza%20de%20pele" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#wa"/></svg>Quero cuidar da minha pele</a>
-        <a class="btn btn--ghost" href="https://www.google.com/maps/place/Est%C3%A9tica+Talita+Brito/@-22.9550154,-47.184121,17z/data=!4m6!3m5!1s0x94c8b7b7362a7f35:0xea135791ed839414!8m2!3d-22.9550154!4d-47.184121!16s%2Fg%2F11h5md3zh5" target="_blank" rel="noopener">Ver todas no Google</a>
-      </div>
-    </div>
-  </section>
-
   <!-- LOCALIZAÇÃO -->
   <section class="place" id="local">
     <div class="wrap">
@@ -973,7 +1333,7 @@
         <h2>Onde fica</h2>
         <p style="margin-top:1.25rem">Cada atendimento é individual e com hora marcada. A Talita cuida de você do começo ao fim, sem pressa, e explica cada etapa do que está fazendo.</p>
         <p>Você é recebida num espaço climatizado e aconchegante, no Jardim Lisa, em Campinas.</p>
-        <img class="space" src="fotos/talita-atendimento.png" alt="Talita Brito de jaleco e luva rosa, segurando um aparelho de tratamento facial" loading="lazy" style="object-position: 45% 30%">
+        <img class="space" src="fotos/talita-atendimento.jpg" alt="Talita Brito de jaleco e luva rosa, segurando um aparelho de tratamento facial" loading="lazy" style="object-position: 45% 30%">
       </div>
       <div>
         <iframe class="map" title="Mapa: Estética Talita Brito, Jardim Lisa, Campinas" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Est%C3%A9tica+Talita+Brito,+Av.+Armando+Mario+Tozi,+585+-+Jardim+Lisa,+Campinas+-+SP&amp;output=embed"></iframe>
@@ -1183,6 +1543,12 @@
   const fab = document.querySelector('.wa-fab');
   new IntersectionObserver(([e]) => fab.classList.toggle('is-visible', !e.isIntersecting))
     .observe(document.querySelector('.hero-actions'));
+
+  // Cards de categoria: aplicam o filtro do menu antes de rolar
+  document.querySelectorAll('[data-goto]').forEach(a => a.addEventListener('click', () => {
+    const b = document.querySelector(`.menu-filters [data-filter="${a.dataset.goto}"]`);
+    if (b) b.click();
+  }));
 })();
 </script>
 
